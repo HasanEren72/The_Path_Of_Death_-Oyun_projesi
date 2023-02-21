@@ -20,7 +20,7 @@ Oyuncu Giriş panelinide kullanıcı adını veya şifresini yanlış girdiği d
 kullanıcı adı şifre ve şifre tekrar durumlarını kontrol edip düzeli girildiğinde bile sorgu yapıp aynı
 isimde kullanıcı adı olup olmadığını kontrol ettikten sonra aynı kullanıcı yoksa kaydediyr.
 ![alt text](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/login.png)
-<img src="https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/login.png" alt="alt text" width="320" height="180">
+<img src="https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/login.png" alt="alt text" width="320" height="180">
 
 # Market paneli
 Oyunda kullanıcıların oyunu oynarken farklı karekterler ile oyuna devam etmelerini sağlamak
