@@ -25,7 +25,8 @@ Ve gerekli bütün Altin elmas dönüşümlerini sağlamaları için Menu sahnes
 Bu panelde oyuncular karekter satın alabilir ,değiştirebilir .farklı karekterlerin hızı farklı niteliktedir.
 Ayrıca karekter satın alma paneline ek olarak altın elmas dönüşümleri için Convert paneli de
 oluşturdum.
-Aşaıdaki görsellerde Market paneli Convert Paneli yer alıyor ;
+Aşaıdaki görsellerde Market paneli Convert Paneli yer alıyor .
+![alt text](http://url/to/login.png)
 # Bölüm1-Bölüm2 Sahneleri
 Oyununda 2 farklı bölüm yaptım Orman ve kış tema konulu olarak . adındanda anlaşıldığı üzere
 orman sahnesi yani 1. Bölümde sahne tasarımı yol planı yeşillik orman tarzında yaptım .
