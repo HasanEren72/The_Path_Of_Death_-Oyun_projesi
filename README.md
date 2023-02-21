@@ -19,9 +19,11 @@ sorgularla çekiyorum.
 Oyuncu Giriş panelinide kullanıcı adını veya şifresini yanlış girdiği durumlarda , Create panelinde ise
 kullanıcı adı şifre ve şifre tekrar durumlarını kontrol edip düzeli girildiğinde bile sorgu yapıp aynı
 isimde kullanıcı adı olup olmadığını kontrol ettikten sonra aynı kullanıcı yoksa kaydediyr.
-- Login ' e ait görsel
-![alt text](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/login.png)
+- Login paneli
+![login](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/login.png)
 
+ - Create paneli
+![create](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/create.png)
 
 # Market paneli
 Oyunda kullanıcıların oyunu oynarken farklı karekterler ile oyuna devam etmelerini sağlamak
