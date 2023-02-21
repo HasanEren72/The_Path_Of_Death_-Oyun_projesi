@@ -33,9 +33,17 @@ Ayrıca karekter satın alma paneline ek olarak altın elmas dönüşümleri iç
 oluşturdum.
 Aşaıdaki görsellerde Market paneli Convert Paneli yer alıyor .
 
+- Market paneli
+![market](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/menu.png)
+
 # Bölüm1-Bölüm2 Sahneleri
 Oyununda 2 farklı bölüm yaptım Orman ve kış tema konulu olarak . adındanda anlaşıldığı üzere
 orman sahnesi yani 1. Bölümde sahne tasarımı yol planı yeşillik orman tarzında yaptım .
 1. Bölümde farklı olarak yağmur efekti ve sahneye uygun efekt ve nesneler kullandım.
 Aynı şekilde 2. Bölümde de Kar efekti ve sahne uygun efekt ve nesneler kullandım .
+ 
+- Bölüm 1 sahnesi:
+![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/bolum1.png)
+- Bölüm 2 sahnesi:
+![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/bolum2.png)
 
