@@ -63,3 +63,13 @@ Aynı şekilde 2. Bölümde de Kar efekti ve sahne uygun efekt ve nesneler kulla
 - Bölüm 2 sahnesi:
 ![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/bolum2.png)
 
+# Oyun Web Sayfası
+Bu kısımda oyun web sayfası hakkında bilgi verecem . Oyunun kullanıcılar için kayıtlar ve skorlar
+Oluşturup bu kullanıcıları çeşitli skorlara göre ( puan ,toplam Altın , toplam Elmas vb) web sayfasında
+efektif olarak sıralamayı gerçekleştirdim.
+Bu sayfada ayrıca kullanıcı girişi profil kısmında ise kullanıcı bilgilerini güncelleyecek sayfayıda yaptım.
+kullanıcı arama , listeleme işlemlerini yaptım.
+Web sayfası arayüzünde css ‘i efektif olarak kullandım . dil olarakta html ve php kullandım .
+Veritabanı olarak da phpMysql veritabanını kullandım.
+- Şekilde  oyunun web sayfası bulunuyor
+![web](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/web.png)
