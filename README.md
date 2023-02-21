@@ -12,6 +12,22 @@ Farklı oyuncuların Skor, gibi nitelikleri bir web sayfasında sıralayıp kull
 - C#
 - Php
 - Web sayfası ara yüzü için HTML,CSS ,PHP dilleri kullanılmıştır.
+# Oyunun ilerleyişi
+Daha önceden Projenin amaç kısmında bahsettiğim gibi koşmaya dayalı stratejik Bir hayatta
+kalma oyunu yaratmaktı amaç .
+Bu kısımda projenin ilerleyişi nasıl olacak sorusuna cevap bulunacaktır.
+Karekter belirsiz yollardan geçecektir . bu yollarda karşısına rastgele engeller ,tuzaklar çıkacaktır
+Oyuncu bu engellerden başarılı bir şekilde kurtulup yoluna devam eder ise bir sonraki aşamaya
+geçecekti. Fakat oyuncu bu engellere takılır ise başarısız olup ölecektir. Bu durumda Game-Over
+sahnesine dönecektir . oyunu tekrar başlatınca aynı safaları tekrar yaşayacaktır.
+Burada oyuncunun katettiği mesafe , skoru ,kullanıcı bilgileri DataBase ‘e kaydedilecektir.
+Projenin 2. Aşamasında ise elde edilen bu veriler bir web sayfasına çekilecektir. Bu sayfa
+oyuncuların Skorlarına göre sıralanıp efektif bir şekilde tasarlanacaktır.
+Aşağıda Oyunun akış diyagramı yer almaktadır.
+
+- Şekilde Oyunun akış diyagramı vardır
+![diagram](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/diagram.png)
+
 # Logın-Create Sahnesi
 Bu sahnede LOGIN ve CREATE adında iki ayrı panel oluşturdum . Burada oyuncuların gerekli
 Giriş ve kayıt işlemleri gerçekleştirdim . veriler Mysql veritabanına anlık olarak kaydedip gerekli
