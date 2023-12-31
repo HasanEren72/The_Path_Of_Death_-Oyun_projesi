@@ -74,4 +74,4 @@ kullanıcı arama , listeleme işlemlerini yaptım.
 Web sayfası arayüzünde css ‘i efektif olarak kullandım . dil olarakta html ve php kullandım .
 Veritabanı olarak da phpMysql veritabanını kullandım.
 - Şekilde  oyunun web sayfası bulunuyor
-![web](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/Web.png)
+![web](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/web.png)
