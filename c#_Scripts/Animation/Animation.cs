@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    [SerializeField] private GameObject Karakter;
-    Animator karakterAnimasyon;
+    [SerializeField] 
+    private GameObject Karakter;  // [Serializefield]  kullanmanýn nedeni private eriþilemez deðiþkeni inspector panelinde kullanablmektir
+
+    Animator karakterAnimator;
+
     void Start()
     {
-        karakterAnimasyon = Karakter.GetComponent<Animator>();
+        karakterAnimator =GetComponent<Animator>();
     }
-
     
     void Update()
     {
@@ -22,14 +24,14 @@ public class Animation : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            karakterAnimasyon.SetTrigger("ZÝPLA");
+            karakterAnimator.SetTrigger("ZÝPLA");
         }
     }
     void Kayma()
     {
         if (Input.GetKey(KeyCode.S)||Input.GetKey(KeyCode.DownArrow))
         {
-            karakterAnimasyon.SetTrigger("KAYMA");
+            karakterAnimator.SetTrigger("KAYMA");
         }
     }
 
@@ -37,12 +39,7 @@ public class Animation : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.G))
         {
-            karakterAnimasyon.SetTrigger("DUSME");
+            karakterAnimator.SetTrigger("DUSME");
         }
-      
-
-
     }
-
-
 }

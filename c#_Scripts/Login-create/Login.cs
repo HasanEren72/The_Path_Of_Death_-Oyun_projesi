@@ -4,16 +4,14 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 public class Login : MonoBehaviour
-{
-    
+{    
+    private AudioSource ses;
 
-    panel_gecis pK_Script;
-
-
-    public AudioSource ses;
-    public TMP_InputField kullaniciAdi_IF, sifre_IF;
+    [SerializeField]
+    private TMP_InputField kullaniciAdi_IF, sifre_IF;
 
     public static string kuladi;
     public static string sifre;
@@ -21,46 +19,39 @@ public class Login : MonoBehaviour
     public static string V_kullanici_degeri;
     public static string V_sifre_degeri;
 
- 
-    public void  kuladi_vesifre_atama_fonk()
+    panel_gecis pK_Script;
+
+    [SerializeField]
+    private GameObject hataPaneli;
+
+    void Start()
+    {
+        ses = GetComponent<AudioSource>();
+        pK_Script = GetComponent<panel_gecis>();
+
+        ses.Play();
+    }
+
+    public void kuladi_vesifre_atama_fonk()
     {
         kuladi = kullaniciAdi_IF.text;
         sifre = sifre_IF.text;
     }
 
-    public void menuyagit()
-    {
-        SceneManager.LoadScene("Menu");
-
-    }
-
-  
-    void Start()
-    {
-        pK_Script = GetComponent<panel_gecis>();
-
-       // sahneGecis = GameObject.Find("SahneManager").GetComponent<panel_gecis>();
-    }
-
-   
     public void girisYap_B()
     {
         if (kullaniciAdi_IF.text.Equals("") || sifre_IF.text.Equals(""))
         {
             StartCoroutine(pK_Script.hataPanel("Boþ BIRAKMAYINIZ!"));
+            hataPaneliGetir();
         }
         else
-        {
-           
+        {          
             StartCoroutine((pK_Script.hataPanel("Giris Basarili")));
-
             //veritabaný
-             StartCoroutine(girisYap());
+            StartCoroutine(girisYap());
         }
     }
-
-
-
 
     IEnumerator girisYap()
     {
@@ -79,12 +70,10 @@ public class Login : MonoBehaviour
             }
             else
             {
-               Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);
-               
+               Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);              
                
                 if (www.downloadHandler.text.Contains("giriþ baþarýlý"))
                 {
-
                     kuladi_vesifre_atama_fonk();
                     PlayerPrefs.SetString("kullaniciadi_Kayit", kuladi); // set etme iþlemi
                     PlayerPrefs.SetString("sifre_Kayit", sifre);
@@ -92,40 +81,37 @@ public class Login : MonoBehaviour
                     V_kullanici_degeri = PlayerPrefs.GetString("kullaniciadi_Kayit");
                     V_sifre_degeri = PlayerPrefs.GetString("sifre_Kayit");
 
-                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);  // veriyi göndermek için sahneyi yükledik
-                   
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);  //  için sahneyi yükledik                  
                 }
                 else
                 {
                     Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);
                     StartCoroutine(pK_Script.hataPanel(www.downloadHandler.text));
-                    
-                }
-                   
+                    hataPaneliGetir();
+                }                   
             }
         }
-
-
     }
     
+    void hataPaneliGetir()
+    {
+        hataPaneli.GetComponent<RectTransform>().DOLocalMoveY(-260,0.5f);
+    }
 
-
-
-    public void seskapat()
-    {  if(ses.enabled == false)
+    public void SesKontrol()
+    {  
+        if(ses.isPlaying)
         {
-
-            ses.enabled = true;
+            ses.Stop();
         }
-        else if(ses.enabled == true)
+        else
         {
-            ses.enabled = false;
+            ses.Play();
         }
     }
 
     public void exit()
     {
-
         Application.Quit();
     }
 }

@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class karekter_islemleri : MonoBehaviour
 {
-    public GameObject oyuncu1, oyuncu2, oyuncu3;
+    [SerializeField]
+    private GameObject oyuncu1, oyuncu2, oyuncu3;
 
-
-    public bool karekter1, karekter2, karekter3;
-
- 
-
+    [SerializeField]
+    private bool karekter1, karekter2, karekter3;
 
     void Start()
     {
-
         karekter1 = Menu_paneli.karekter1_buy;
         karekter2 = Menu_paneli.karekter2_buy;
         karekter3 = Menu_paneli.karekter3_buy;
@@ -41,14 +38,5 @@ public class karekter_islemleri : MonoBehaviour
         {
             
         }
-    }
-
-  
-
-    void Update()
-    {
-      
-
-
     }
 }

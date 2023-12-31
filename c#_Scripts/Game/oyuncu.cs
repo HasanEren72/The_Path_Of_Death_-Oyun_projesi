@@ -8,62 +8,75 @@ using System.Data;
 
 public class oyuncu : MonoBehaviour
 {
+    [SerializeField]
+    private Transform oyuncu_kayma;
 
-    public Transform oyuncu_kayma;
-    public Animator animasyon;
+    [SerializeField]
+    private Animator animasyon;
 
+    [SerializeField]
+    private GameObject altin_efekti , hiz_efekti , elmas_efekti , kalkan_efekti , devamlı_kalkan_efekti; 
 
-    public GameObject altin_efekti;
-    public GameObject hiz_efekti;
-    public GameObject elmas_efekti;
-    public GameObject kalkan_efekti;
-    public GameObject devamlı_kalkan_efekti;
+    [SerializeField]
+    private Transform Yol_1, Yol_2;
 
-   
+    [SerializeField]
+    private Transform oyuncu_T_efekt_icin;
 
-    public  float hiz=9.0f;
+    [SerializeField]
+    private Rigidbody rigi;
 
-    public Transform Yol_1;
-    public Transform Yol_2;
-
-    public Transform oyuncu_T_efekt_icin;
-
-    public Rigidbody rigi;
-
-    bool sag = true;
-
-   
-
+    public bool sag = true;
     public bool miknatis_alindi = false;
     public bool hiz_nesnesi_alindi = false;
     public bool kalkan_alindi = false;
 
-    public AudioSource ses_dosyasi;
- 
-    public AudioSource miknatis_temas_sesi;
-    public AudioSource altin_temas_sesi;
-    public AudioSource gameover_ses;
-    public AudioSource Hiznesnesi_ses;
-    public AudioSource Kalkan_ses;
-    public AudioSource elmas_sesi;
+    private AudioSource audioSource;
 
-    public TMPro.TextMeshProUGUI puan_txt;  //textmeshpro değerleri
-    public TMPro.TextMeshProUGUI toplanan_altin_txt;
-    public TMPro.TextMeshProUGUI elmas_txt;
+    [SerializeField]
+    private AudioClip miknatisSesi, AltinTemasSesi, kalkanSesi, ElmasSesi;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI puan_txt , altin_txt , elmas_txt;  //textmeshpro değerleri
 
-    public static int puan = 0;           // skor artış degerleri
-    public static int toplanan_altin = 0;
+    [SerializeField]
+    private float hiz = 9.0f;
+
+    public static int puan = 0;      // skor artış degerleri
+    public static int altin = 0;
     public static int elmas = 0;
 
-    public static int toplanan_altin_Kayit; // skor kayıt değerleri
-    public static int puan_Kayit;
-    public static int elmas_Kayit;
-  
+    public static string kullaniciadi_str, sifre_str, puan_str, Altin_str, elmas_str;
 
     public static bool engeleCarpabilir = true;
 
     public static bool boxcolider_aktiflik = true;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    void Start()
+    {
+        PlayerPrefs.DeleteKey("puan_verisi");
+        PlayerPrefs.DeleteKey("altin_sayisi_verisi");
+        PlayerPrefs.DeleteKey("elmas_verisi");
+
+        puan_txt.text = "0";
+        altin_txt.text = "0";
+        elmas_txt.text = "0";
+
+        rigi = GetComponent<Rigidbody>();
+       
+        kullaniciadi_str = PlayerPrefs.GetString("kullaniciadi_Kayit");
+        sifre_str = PlayerPrefs.GetString("sifre_Kayit");
+
+        Debug.Log("kullaniciadi_str alınan veri :" + kullaniciadi_str);
+
+        StartCoroutine(İLKskorlar_ekleme()); //ilk skorları veritabanına ekliyor
+    }
+
     public void BoxColider_aktiflik_true()
     {
         boxcolider_aktiflik = true;
@@ -73,27 +86,18 @@ public class oyuncu : MonoBehaviour
     {
         if (other.gameObject.tag =="duvar_1")
         {
-            Yol_2.position = new Vector3(Yol_1.position.x, Yol_1.position.y, Yol_1.position.z + 69.0f);
-          
-
-
+            Yol_2.position = new Vector3(Yol_1.position.x, Yol_1.position.y, Yol_1.position.z + 69.0f);         
         }
         if (other.gameObject.tag == "duvar_2")
         {
             Yol_1.position = new Vector3(Yol_2.position.x, Yol_2.position.y, Yol_2.position.z + 69.0f);
-
-
         }
 
         if (other.gameObject.tag == "hiz_nesne")
         {
             engeleCarpabilir = false;
-           
-
-            Hiznesnesi_ses.enabled = true;
-            Invoke("Hiznesnesi_sesi_kapat", 0.5f);
+                     
             Destroy(other.gameObject);
-
 
             GameObject[] tum_hiz_nesneleri = GameObject.FindGameObjectsWithTag("hiz_nesne");
             foreach (GameObject hiz_nesne in tum_hiz_nesneleri)
@@ -107,8 +111,7 @@ public class oyuncu : MonoBehaviour
             StartCoroutine(HizSuresi());
         }
         IEnumerator HizSuresi()
-        {
-           
+        {       
             Time.timeScale = 2;
             boxcolider_aktiflik = false;
 
@@ -122,15 +125,11 @@ public class oyuncu : MonoBehaviour
             engeleCarpabilir = true;
         }
 
-
         if (other.gameObject.tag == "kalkan")
-        {
-            
-
+        {            
             GameObject yeni_kalkan_efekti = Instantiate(kalkan_efekti, other.gameObject.transform.position, Quaternion.identity); //parlayan alt�n efekti
 
             Destroy(yeni_kalkan_efekti, 0.5f);
-
 
             GameObject[] tum_kalkanlar = GameObject.FindGameObjectsWithTag("kalkan");
 
@@ -142,8 +141,7 @@ public class oyuncu : MonoBehaviour
             engeleCarpabilir = false;
             StartCoroutine(engelaktiflik());
 
-            Kalkan_ses.enabled = true;
-            Invoke("kalkan_sesi_kapat", 0.7f);
+            audioSource.PlayOneShot(kalkanSesi);
             kalkan_alindi = true;
             Invoke("nesneleri_resetle", 10.0f);
         }
@@ -166,9 +164,8 @@ public class oyuncu : MonoBehaviour
             if (other.gameObject.tag == "engel")
             {
                 puan = 0;
-                toplanan_altin = 0;
+                altin = 0;
                 elmas = 0;
-               
 
                 Time.timeScale = 0.0f;
 
@@ -179,36 +176,26 @@ public class oyuncu : MonoBehaviour
                 SceneManager.LoadScene("Game_Over");
 
                 StartCoroutine(skorlar_ekleme()); // engellere çarpınca  skorları veritabanına kayıt etmek için
-
-
-
             }
         }
        
         if (other.gameObject.tag == "altin")
         {
-            altin_temas_sesi.enabled = true;
+            audioSource.PlayOneShot(AltinTemasSesi);
 
             GameObject yeni_altin_efekti = Instantiate(altin_efekti, other.gameObject.transform.position, Quaternion.identity); //parlayan altin efekti
 
             Destroy(yeni_altin_efekti, 0.5f);
-            Destroy(other.gameObject);
-
-
-
-            toplanan_altin++;
-            PlayerPrefs.SetInt("altin_sayisi_verisi", toplanan_altin);
-            toplanan_altin_Kayit = PlayerPrefs.GetInt("altin_sayisi_verisi");
-
-
+          
+            altin++;
+            PlayerPrefs.SetInt("altin_sayisi_verisi", altin);
+            
             puan += 5;
-            PlayerPrefs.SetInt("puan_verisi", puan);
-            puan_Kayit = PlayerPrefs.GetInt("puan_verisi");
+            PlayerPrefs.SetInt("puan_verisi", puan);           
 
            // puan_txt.text = puan.ToString("0000");
-
-            Invoke("altin_temas_sesi_kapat", 0.3f);
-
+          
+            Destroy(other.gameObject);
         }
 
         if (other.gameObject.tag == "elmas")
@@ -218,23 +205,19 @@ public class oyuncu : MonoBehaviour
             Destroy(yeni_elmas_efekti, 0.5f);
 
             elmas++;
-            PlayerPrefs.SetInt("elmas_verisi", elmas);
-            elmas_Kayit = PlayerPrefs.GetInt("elmas_verisi");
+            PlayerPrefs.SetInt("elmas_verisi", elmas);          
 
             puan += 10;
-            PlayerPrefs.SetInt("puan_verisi", puan);
-            puan_Kayit = PlayerPrefs.GetInt("puan_verisi");
+            PlayerPrefs.SetInt("puan_verisi", puan);         
 
             Destroy(other.gameObject);
-            elmas_sesi.enabled = true;
-            Invoke("elmas_sesi_kapat", 0.9f);
-        }
 
+            audioSource.PlayOneShot(ElmasSesi);
+        }
 
         if (other.gameObject.tag == "miknatis")
         {
-            miknatis_temas_sesi.enabled = true;
-
+            audioSource.PlayOneShot(miknatisSesi);
 
             GameObject[] tum_miknatislar = GameObject.FindGameObjectsWithTag("miknatis");
 
@@ -245,33 +228,8 @@ public class oyuncu : MonoBehaviour
 
             miknatis_alindi = true;  //sadece bir tane m�knat�s al�n�r 
             Invoke("nesneleri_resetle", 10.0f); // m�knat�s silme fonksiyonunu 10 saniye sonra  �al��t�racak
-            Invoke("miknatis_temas_sesi_kapat", 0.3f);
-
-        }
-
-     
-        //
-    }
-    public void Hiznesnesi_sesi_kapat()
-    {
-        Hiznesnesi_ses.enabled = false;
-    }
-    public void elmas_sesi_kapat()
-    {
-        elmas_sesi.enabled = false;
-    }
-    public void kalkan_sesi_kapat()
-    {
-       Kalkan_ses.enabled = false;
-    }
-    public void altin_temas_sesi_kapat()
-    {
-        altin_temas_sesi.enabled = false ;
-    }
-
-    public void miknatis_temas_sesi_kapat()
-    {
-        miknatis_temas_sesi.enabled = false;
+           
+        }       
     }
 
     void nesneleri_resetle()
@@ -281,25 +239,18 @@ public class oyuncu : MonoBehaviour
         kalkan_alindi = false;
     }
 
-
     private void OnCollisionStay(Collision collision) //oyuncu ile yol ars�nda �arp��ma devam ederken
     { 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)) //klavyeden yukar� ok tu�una bas�lm�� ise
         {
-
-
             rigi.velocity = Vector3.up * 300.0f * Time.deltaTime;
             //rigi.velocity = new Vector3(0, 6f, 0);
-            // animasyon.SetBool("zipla", true);
-           
-
+            // animasyon.SetBool("zipla", true);          
         }
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) //kayma
         {
             oyuncu_kayma.position = new Vector3(oyuncu_kayma.position.x, 0.72f, oyuncu_kayma.position.z);
             //animasyon.SetBool("kayma", true);
-
-
         }
 
         // Oyunun Android versiyonu için  yön hareketleri
@@ -320,53 +271,8 @@ public class oyuncu : MonoBehaviour
         //    }
 
         //}
-
-    }
-
-    private void OnCollisionExit(Collision collision)//oyuncu ile yol ars�nda  �arp��ma dbitti�i zaman //z�plad��� zaman
-    {
-        if (!(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.Space)))   //zıplama tuşuna basmadığı zaman dusme animasyonu çalışacaktır
-        { 
-            // animasyon.SetBool("dusme", true);
-            //gameover_ses.enabled = true;
-        }
-      
-    }
-
-    public static string kullaniciadi_str, sifre_str, puan_str, toplamAltin_str, elmas_str;
-
-    void Start()
-    {
-       
-        //if (create.kayitoldu == true)
-        //{
-
-        //}
-        //else
-        //{
-        //    Debug.Log("ilk kayıt başarısız fonks çağrısı başarısız");  
-        //}
-
-        rigi = GetComponent<Rigidbody>();
-        altin_temas_sesi.enabled = false;
-        miknatis_temas_sesi.enabled = false;
-        gameover_ses.enabled = false;
-        Hiznesnesi_ses.enabled = false;
-        Kalkan_ses.enabled = false;
-        elmas_sesi.enabled = false;
-
-        kullaniciadi_str = PlayerPrefs.GetString("kullaniciadi_Kayit");
-        sifre_str = PlayerPrefs.GetString("sifre_Kayit");
-
-        Debug.Log("kullaniciadi_str alınan veri :" + kullaniciadi_str);
-
-
-
-        StartCoroutine(İLKskorlar_ekleme()); //ilk skorları veritabanına ekliyor
     }
     
-    
-
     // skor ekleme işlemleri
 
     public IEnumerator skorlar_ekleme() // veritabanına güncellenmiş şekilde skorları günceller
@@ -376,7 +282,7 @@ public class oyuncu : MonoBehaviour
         form.AddField("kullaniciAdi", kullaniciadi_str);
         form.AddField("sifre", sifre_str);
         form.AddField("puan", puan_str);
-        form.AddField("toplamAltin", toplamAltin_str);
+        form.AddField("toplamAltin", Altin_str);
         form.AddField("top_elmas", elmas_str);
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
@@ -390,7 +296,6 @@ public class oyuncu : MonoBehaviour
             else
             {
                 Debug.Log("Skorlar kayıt Sonucu başarılı:" + www.downloadHandler.text);
-
             }
         }
     }
@@ -401,7 +306,6 @@ public class oyuncu : MonoBehaviour
         form.AddField("kullaniciAdi", kullaniciadi_str);
         form.AddField("sifre", sifre_str);
        
-
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
             yield return www.SendWebRequest();
@@ -413,61 +317,27 @@ public class oyuncu : MonoBehaviour
             else
             {
                 Debug.Log("İLK Skorlar kayıt :" + www.downloadHandler.text);
-
             }
         }
     }
 
-
     void Update()
     {
         sifre_str = PlayerPrefs.GetString("sifre_Kayit");
-        puan_str = puan_Kayit.ToString();
-        toplamAltin_str = toplanan_altin_Kayit.ToString();
-        elmas_str = elmas_Kayit.ToString();
 
-
-
-
+        puan_str = PlayerPrefs.GetInt("puan_verisi").ToString();
+        Altin_str = PlayerPrefs.GetInt("altin_sayisi_verisi").ToString();
+        elmas_str = PlayerPrefs.GetInt("elmas_verisi").ToString();
 
         puan_txt.text = puan.ToString();
-        toplanan_altin_txt.text = toplanan_altin.ToString();
+        altin_txt.text = altin.ToString();
         elmas_txt.text = elmas.ToString();
-
-
-       
-
-        hareket();
-        pozisyon_kaydet();
-       
+     
+        hareket();         
     }
-    public void pozisyon_kaydet()
-    {
-        PlayerPrefs.SetFloat("X", transform.position.x);
-        PlayerPrefs.SetFloat("Y", transform.position.y);
-        PlayerPrefs.SetFloat("Z", transform.position.z);
-    }
-   
- 
-
-    public  void Kalinan_YerdebBaslat()
-    {  
-
-        if (PlayerPrefs.HasKey("Z"))
-        {
-            float X = PlayerPrefs.GetFloat("X");
-            float Y = PlayerPrefs.GetFloat("Y");
-            float Z = PlayerPrefs.GetFloat("Z");
-
-            transform.position = new Vector3(X, Y, Z);
-
-        }
-
-    } 
+    
     void hareket()
     {
-
-
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             sag = true;
@@ -509,11 +379,5 @@ public class oyuncu : MonoBehaviour
         //}
 
         transform.Translate(0, 0, hiz * Time.deltaTime);
-
     }
-
-
-
-
-
 }

@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class klon_olustur : MonoBehaviour
+public class klon_olustur3 : MonoBehaviour
 {
     [SerializeField]
-    private GameObject altin , tas , kutuk , miknatis;
+    private GameObject altin, tas, kutuk, miknatis;
 
     [SerializeField]
-    private GameObject kalkan , hiz_nesnesi , elmas , cit_engel;
+    private GameObject kalkan, hiz_nesnesi, elmas, cit_engel;
 
     [SerializeField]
     public Transform oyuncuT;
@@ -17,13 +17,13 @@ public class klon_olustur : MonoBehaviour
     float sag_x_kardinat = 1.07f;
     float sol_x_kordinat = -1.9f;
 
-    [SerializeField] 
+    [SerializeField]
     private GameObject[] nesneX;
 
     private BoxCollider[] collider;
 
     void Start()
-    {       
+    {
         InvokeRepeating("nesne_klonla_fonk", 0, 0.5f); //5 saniye aralýklarla tekrar tekrar nesne klonla fonksiyonunu çaðýrýr
 
         collider = new BoxCollider[nesneX.Length];
@@ -31,8 +31,8 @@ public class klon_olustur : MonoBehaviour
         {
             collider[i] = nesneX[i].GetComponent<BoxCollider>();
         }
-      
-        nesneX = GameObject.FindGameObjectsWithTag("engel");      
+
+        nesneX = GameObject.FindGameObjectsWithTag("engel");
     }
 
     void nesne_klonla_fonk()
@@ -52,15 +52,15 @@ public class klon_olustur : MonoBehaviour
             klonla(cit_engel, 0.6f);
         }
         if (rastgele_sayi > 65 && rastgele_sayi < 70)
-        {           
-            if (oyuncuT.gameObject.GetComponent<oyuncu>().hiz_nesnesi_alindi == false  && oyuncuT.gameObject.GetComponent<oyuncu>().kalkan_alindi == false)
+        {
+            if (oyuncuT.gameObject.GetComponent<oyuncu3>().hiz_nesnesi_alindi == false && oyuncuT.gameObject.GetComponent<oyuncu3>().kalkan_alindi == false)
             {
                 klonla(hiz_nesnesi, 2.0f);
             }
         }
         if (rastgele_sayi > 70 && rastgele_sayi < 75)
-        {         
-            if (oyuncuT.gameObject.GetComponent<oyuncu>().kalkan_alindi == false && oyuncuT.gameObject.GetComponent<oyuncu>().hiz_nesnesi_alindi == false)
+        {
+            if (oyuncuT.gameObject.GetComponent<oyuncu3>().kalkan_alindi == false && oyuncuT.gameObject.GetComponent<oyuncu3>().hiz_nesnesi_alindi == false)
             {
                 klonla(kalkan, 1.6f);
             }
@@ -76,7 +76,7 @@ public class klon_olustur : MonoBehaviour
         }
         if (rastgele_sayi > 85 && rastgele_sayi < 90)
         {
-            if (oyuncuT.gameObject.GetComponent<oyuncu>().miknatis_alindi == false)
+            if (oyuncuT.gameObject.GetComponent<oyuncu3>().miknatis_alindi == false)
             {
                 klonla(miknatis, 2.0f);
             }
@@ -89,21 +89,21 @@ public class klon_olustur : MonoBehaviour
 
 
     void klonla(GameObject nesne, float y_kordinat)
-    {       
+    {
         GameObject yeni_klon = Instantiate(nesne); // bu nesne yi yeni klon nesnesine yükledik
-      
+
         int rastsayi = Random.Range(0, 100);
-    
-        if (nesne == kutuk ||  nesne ==tas)
+
+        if (nesne == kutuk || nesne == tas)
         {
-            if (oyuncu.boxcolider_aktiflik==false)
+            if (oyuncu3.boxcolider_aktiflik == false)
             {
                 yeni_klon.GetComponent<BoxCollider>().enabled = false;
 
                 for (int i = 0; i < collider.Length; i++)  //bursaý çalýþmýyor
                 {
                     collider[i].GetComponent<BoxCollider>().enabled = false;
-                    Debug.Log("deger dondu" + oyuncu.boxcolider_aktiflik);
+                    Debug.Log("deger dondu" + oyuncu3.boxcolider_aktiflik);
                 }
 
 
@@ -111,10 +111,10 @@ public class klon_olustur : MonoBehaviour
                 {
                     yeni_klon.transform.position = new Vector3(sag_x_kardinat, y_kordinat, oyuncuT.position.z + 10.0f);
                 }
-                if(rastsayi < 50)
+                if (rastsayi < 50)
                 {
                     yeni_klon.transform.position = new Vector3(sol_x_kordinat, y_kordinat, oyuncuT.position.z + 10.0f);
-                }               
+                }
             }
 
             else
@@ -128,7 +128,7 @@ public class klon_olustur : MonoBehaviour
                     yeni_klon.transform.position = new Vector3(sol_x_kordinat, y_kordinat, oyuncuT.position.z + 10.0f);
                 }
 
-                Debug.Log("deger donmedi! kutuk-tas"+oyuncu.boxcolider_aktiflik);
+                Debug.Log("deger donmedi! kutuk-tas" + oyuncu3.boxcolider_aktiflik);
             }
 
             Destroy(yeni_klon, silme_zamani);
@@ -136,13 +136,13 @@ public class klon_olustur : MonoBehaviour
         else
         {
             if (rastsayi > 50)
-            {             
+            {
                 yeni_klon.transform.position = new Vector3(sag_x_kardinat, y_kordinat, oyuncuT.position.z + 10.0f);
             }
             else
-            {             
+            {
                 yeni_klon.transform.position = new Vector3(sol_x_kordinat, y_kordinat, oyuncuT.position.z + 10.0f);
-            }    
+            }
         }
 
         Destroy(yeni_klon, silme_zamani);

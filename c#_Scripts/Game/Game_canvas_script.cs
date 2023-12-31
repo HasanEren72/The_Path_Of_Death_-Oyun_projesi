@@ -5,54 +5,62 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class Game_canvas_script : MonoBehaviour
-{
-    public AudioSource ses;
+{   
+    private AudioSource audioSource;
 
-     void Start()
-     {
-       
-     }
+    [SerializeField]
+    private AudioClip OyunBaslangicSesi;
 
+    private AudioSource[] tumSesler;
 
-    void Update()
+    bool sesCalsinmi;
+
+    private void Awake()
     {
-        
+        tumSesler = Object.FindObjectsOfType<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = OyunBaslangicSesi;
+        audioSource.loop = true;           
     }
-    public void Home()
+
+    private void Start()
     {
-       
+        sesCalsinmi = false;
+        audioSource.Play();
+    }
+    
+    public void Home()
+    {       
         oyuncu.puan = 0;
-        oyuncu.toplanan_altin = 0;
+        oyuncu.altin = 0;
         oyuncu.elmas = 0;
-
-
         SceneManager.LoadScene("Menu");
-
     }
 
     public void Exit_button()
     {
         Application.Quit();
-
         oyuncu.puan = 0;
-        oyuncu.toplanan_altin = 0;
+        oyuncu.altin = 0;
         oyuncu.elmas = 0;
-
-
     }
+
     public void ses_kapat()
     {
-        if (ses.enabled == true)
+        if (!sesCalsinmi)
         {
-            ses.enabled = false;
-
+            foreach (var item in tumSesler)
+            {
+                item.Stop();
+            }
         }
         else
         {
-            ses.enabled = true;
-
+            foreach (var item in tumSesler)
+            {
+                item.Play();
+            }
         }
-
-
+        sesCalsinmi = !sesCalsinmi;
     }
 }

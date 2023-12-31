@@ -6,46 +6,56 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-
 public class Menu_paneli : MonoBehaviour
 {
-   
-  
-    public  AudioSource ses;
+    [SerializeField]
+    private  AudioSource audioSource;
 
-    public TextMeshProUGUI puan, toplam_altin ,elmas  ,satinalmamesaj1, satinalmamesaj2, satinalmamesaj3 ,altin1_Mesaj, altin2_Mesaj,elmas_mesaj;
-    public TextMeshProUGUI kullaniciadi_txt_hosgeldin;
-    public TextMeshProUGUI market_btn ,Cevirme_btn;
-    public GameObject marketpaneli,Conver_Paneli;
-    public GameObject kareker1_satinAlmaPaneli, kareker2_satinAlmaPaneli, kareker3_satinAlmaPaneli;
-    public GameObject altin1_satinalmapaneli, altin2_satinalmapaneli, elmas_satinalmapaneli;
+    [SerializeField]
+    private AudioClip satýnAlma_sesi;
+
+    [SerializeField]
+    private TextMeshProUGUI puan, toplam_altin ,elmas  ,satinalmamesaj1, satinalmamesaj2, satinalmamesaj3 ,altin1_Mesaj, altin2_Mesaj,elmas_mesaj;
+
+    [SerializeField]
+    private TextMeshProUGUI kullaniciadi_txt_hosgeldin;
+
+    [SerializeField]
+    private TextMeshProUGUI market_btn ,Cevirme_btn;
+
+    [SerializeField]
+    private GameObject marketpaneli,Conver_Paneli;
+
+    [SerializeField]
+    private GameObject kareker1_satinAlmaPaneli, kareker2_satinAlmaPaneli, kareker3_satinAlmaPaneli;
+
+    [SerializeField]
+    private GameObject altin1_satinalmapaneli, altin2_satinalmapaneli, elmas_satinalmapaneli;
 
     public GameObject kullan_btn1 , kullan_btn2, kullan_btn3;
-    public GameObject satýnAlma_sesi;
-
-    public string kuladi;
-    public string sifre;
+  
+    [SerializeField]
+    private string kuladi, sifre;
 
     public int  toplamAltin,toplamElmas;
     
-
     public static bool karekter1_buy , karekter2_buy, karekter3_buy;
 
     // string karekter1_satinalindi, karekter2_satinalindi, karekter3_satinalindi; // kullan btn aktiflik için
     string karekter_1satnalindik, karekter_2satnalindik, karekter_3satnalindik;
+
+    private void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     public void Start()
     {
-
-
-
-        satýnAlma_sesi.SetActive(false);
+        audioSource.Play();
 
         kullan_btn1.SetActive(false);
         kullan_btn2.SetActive(false);
-        kullan_btn3.SetActive(false);
-
-
-     
+        kullan_btn3.SetActive(false);    
 
         if (PlayerPrefs.GetString("karekter1_kullanbtn")=="aktif1")
         {   
@@ -55,13 +65,11 @@ public class Menu_paneli : MonoBehaviour
         if (PlayerPrefs.GetString("karekter2_kullanbtn") == "aktif2")
         {
             kullan_btn2.SetActive(true);
-
         }
        
         if (PlayerPrefs.GetString("karekter3_kullanbtn") == "aktif3")
         {
             kullan_btn3.SetActive(true);
-
         }
         else
         {
@@ -72,7 +80,6 @@ public class Menu_paneli : MonoBehaviour
             PlayerPrefs.DeleteKey("karekter2_kullanbtn");
             PlayerPrefs.DeleteKey("karekter3_kullanbtn");
         }
-
 
         // Veriyi al
         kuladi = Login.V_kullanici_degeri;
@@ -93,10 +100,7 @@ public class Menu_paneli : MonoBehaviour
         StartCoroutine(toplam_elmas_cekme());
 
     }
-    public void satýnAlma_sesiAktiflik()
-    {
-        satýnAlma_sesi.SetActive(false);
-    }
+
     public void karekter1_satin_AL()
     {
         kareker1_satinAlmaPaneli.SetActive(true); // karekter1 satýnalma paneli açar
@@ -137,8 +141,7 @@ public class Menu_paneli : MonoBehaviour
 
         kullan_btn2.SetActive(true);
         karekter_2satnalindik = "aktif2";
-        PlayerPrefs.SetString("karekter2_kullanbtn", karekter_2satnalindik);
-      
+        PlayerPrefs.SetString("karekter2_kullanbtn", karekter_2satnalindik);      
     }
     public void Kullan_btn2()//butona basýnca karekter seçer
     {
@@ -152,8 +155,7 @@ public class Menu_paneli : MonoBehaviour
     {
         kullan_btn3.SetActive(true);
         karekter_3satnalindik = "aktif3";
-        PlayerPrefs.SetString("karekter3_kullanbtn", karekter_3satnalindik);
-     
+        PlayerPrefs.SetString("karekter3_kullanbtn", karekter_3satnalindik);    
     }
     public void Kullan_btn3() //butona basýnca karekter seçer
     {
@@ -168,7 +170,6 @@ public class Menu_paneli : MonoBehaviour
         kareker1_satinAlmaPaneli.SetActive(false); 
         kareker2_satinAlmaPaneli.SetActive(false);
         kareker3_satinAlmaPaneli.SetActive(false);
-
     }
     public void karekterpanelleri_kapat()
     {
@@ -183,15 +184,11 @@ public class Menu_paneli : MonoBehaviour
 
     public void karekter1_evet_btn()
     {
-
         if (toplamAltin >= 5000)
         {
-
             StartCoroutine(AltinGuncelleme_ekleme());
 
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.8f);
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             karekter1_Kullanbtn_Aktiflik();
 
@@ -203,22 +200,15 @@ public class Menu_paneli : MonoBehaviour
             satinalmamesaj1.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
             Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
         }
-
-
         // karekter2_buy = false;
-
     }
     public void karekter2_evet_btn()
     {
         if (toplamElmas >= 200)
         {
-
             StartCoroutine(ElmasGuncelleme_ekleme());
 
-
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.8f);
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             karekter2_Kullanbtn_Aktiflik();
 
@@ -230,20 +220,15 @@ public class Menu_paneli : MonoBehaviour
             satinalmamesaj2.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
             Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
         }
-
     }
 
     public void karekter3_evet_btn()
     {
         if (toplamAltin >= 7000)
         {
-
             StartCoroutine(AltinGuncelleme_ekleme());
 
-
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.8f);
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             karekter3_Kullanbtn_Aktiflik();
 
@@ -255,22 +240,15 @@ public class Menu_paneli : MonoBehaviour
             satinalmamesaj3.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
             Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
         }
-
     }
 
     public void altina_cevir1_evet_btn()
     {
-
         if (toplamElmas >= 500)
         {
-
            StartCoroutine(donusturme1_altin_elmas_guncelleme());
 
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.4f);
-
-
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             altin1_Mesaj.text = "Dönüþtürme baþarýlý ";
             Debug.Log("*** Dönüþtürme1 baþarýlý ***");
@@ -280,21 +258,14 @@ public class Menu_paneli : MonoBehaviour
             altin1_Mesaj.text = "Dönüþtürme baþarýsýz ! elmasýnýz yetersiz!";
             Debug.Log(" Dönüþtürme1 baþarýsýz ! elmasýnýz yetersiz!");
         }
-
     }
     public void altina_cevir2_evet_btn()
     {
-
         if (toplamElmas >= 100)
         {
-
             StartCoroutine(donusturme2_altin_elmas_guncelleme());
 
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.4f);
-
-
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             altin2_Mesaj.text = "Dönüþtürme baþarýlý ";
             Debug.Log("*** Dönüþtürme2 baþarýlý ***");
@@ -304,21 +275,14 @@ public class Menu_paneli : MonoBehaviour
             altin2_Mesaj.text = "Dönüþtürme baþarýsýz ! elmasýnýz yetersiz!";
             Debug.Log(" Dönüþtürme2 baþarýsýz ! elmasýnýz yetersiz!");
         }
-
     }
     public void elmasa_cevir1_evet_btn()
     {
-
         if (toplamAltin >= 5000)
         {
-
             StartCoroutine(Donusturme3_altin_elmas_guncelleme());
 
-            satýnAlma_sesi.SetActive(true);
-
-            Invoke("satýnAlma_sesiAktiflik()", 0.4f);
-
-
+            audioSource.PlayOneShot(satýnAlma_sesi);
 
             elmas_mesaj.text = "Dönüþtürme baþarýlý ";
             Debug.Log("*** Dönüþtürme3 baþarýlý ***");
@@ -328,7 +292,6 @@ public class Menu_paneli : MonoBehaviour
             elmas_mesaj.text = "Dönüþtürme baþarýsýz ! altinýnýz yetersiz!";
             Debug.Log(" Dönüþtürme3 baþarýsýz ! altýnýnýz yetersiz!");
         }
-
     }
 
     IEnumerator donusturme1_altin_elmas_guncelleme() 
@@ -339,7 +302,6 @@ public class Menu_paneli : MonoBehaviour
         form.AddField("sifre", sifre);
 
         form.AddField("Dusecekelmasmiktari", 500);
-
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
@@ -352,7 +314,6 @@ public class Menu_paneli : MonoBehaviour
             else
             {
                 Debug.Log("donusturme1 sonucu :" + www.downloadHandler.text);
-
             }
         }
     }
@@ -366,7 +327,6 @@ public class Menu_paneli : MonoBehaviour
 
         form.AddField("Dusecekelmasmiktari", 100);
 
-
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
             yield return www.SendWebRequest();
@@ -378,11 +338,9 @@ public class Menu_paneli : MonoBehaviour
             else
             {
                 Debug.Log("donusturme2 sonucu :" + www.downloadHandler.text);
-
             }
         }
     }
-
 
     IEnumerator Donusturme3_altin_elmas_guncelleme()
     {
@@ -392,7 +350,6 @@ public class Menu_paneli : MonoBehaviour
         form.AddField("sifre", sifre);
 
         form.AddField("Dusecek_Altin_miktari", 5000);
-
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
@@ -405,12 +362,9 @@ public class Menu_paneli : MonoBehaviour
             else
             {
                 Debug.Log("donusturme3 sonucu :" + www.downloadHandler.text);
-
             }
         }
     }
-
-
 
     public void cevirme_Paneli_AC_btn()
     {
@@ -428,7 +382,6 @@ public class Menu_paneli : MonoBehaviour
         StartCoroutine(puan_cekme());
         StartCoroutine(toplam_altin_cekme());
         StartCoroutine(toplam_elmas_cekme());
-
     }
 
     public void market_paneli()
@@ -436,16 +389,15 @@ public class Menu_paneli : MonoBehaviour
          market_btn.color = Color.red;
          marketpaneli.SetActive(true);       
     }
+
     public void market_paneli_kapat()
     {
         marketpaneli.SetActive(false);
         Conver_Paneli.SetActive(false);
         
-        market_btn.color = Color.yellow;
-     
+        market_btn.color = Color.yellow;    
     }
    
-
     IEnumerator puan_cekme()
     {
         WWWForm form = new WWWForm();
@@ -468,10 +420,7 @@ public class Menu_paneli : MonoBehaviour
                 if (a!= "baþarýsýz")
                 {
                     puan.text = a.ToString();
-                }
-
-               
-                
+                }                           
             }
         }
     }
@@ -500,10 +449,7 @@ public class Menu_paneli : MonoBehaviour
                     toplam_altin.text = b.ToString();
                     toplamAltin = Convert.ToInt32(b); // toplanan altin deðeri  satýn alma panelinde kullanmak için
 
-                }
-
-                
-
+                }                
             }
         }
     }
@@ -531,12 +477,8 @@ public class Menu_paneli : MonoBehaviour
                 {
                     elmas.text = c.ToString();
 
-
                     toplamElmas = Convert.ToInt32(c);
-                }
-
-                
-                
+                }                            
             }
         }
     }
@@ -548,8 +490,7 @@ public class Menu_paneli : MonoBehaviour
         form.AddField("kullaniciAdi", kuladi);
         form.AddField("sifre", sifre);
       
-        form.AddField("DusecekAltinmiktari", 5000);
-     
+        form.AddField("DusecekAltinmiktari", 5000);    
 
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
@@ -561,12 +502,10 @@ public class Menu_paneli : MonoBehaviour
             }
             else
             {
-                Debug.Log("Karekter satin alma sonucu :" + www.downloadHandler.text);
-    
+                Debug.Log("Karekter satin alma sonucu :" + www.downloadHandler.text);  
             }
         }
     }
-
 
     IEnumerator ElmasGuncelleme_ekleme() // Karekter satýn alýndýktan sonra top elmas günceller
     {
@@ -577,7 +516,6 @@ public class Menu_paneli : MonoBehaviour
 
         form.AddField("DusecekElmas_miktari", 200);
 
-
         using (UnityWebRequest www = UnityWebRequest.Post("http://localhost/Unity_DB/user.php", form))
         {
             yield return www.SendWebRequest();
@@ -589,18 +527,16 @@ public class Menu_paneli : MonoBehaviour
             else
             {
                 Debug.Log("Karekter satin alma sonucu :" + www.downloadHandler.text);
-              
-
-
             }
         }
     }
+
     public static bool bolum1;
 
     public void bolum1_basla()
     {
         Time.timeScale = 1.0f;
-        SceneManager.LoadScene("Game_Scene");
+        SceneManager.LoadScene("bolum1");
         bolum1 = true;
     }
     public void bolum2_basla()
@@ -609,33 +545,28 @@ public class Menu_paneli : MonoBehaviour
         SceneManager.LoadScene("bolum2");
         bolum1 = false;
     }
+
     public void loginegit()
     {
         SceneManager.LoadScene("login_scene");
     }
+
     public void Exit()
     {
         Application.Quit();
     }
 
-  
-
-
     public void ses_kapat()
     {
-        if (ses.enabled==true)
+        if (audioSource.isPlaying)
         {
-            ses.enabled = false;
-          
+            audioSource.Stop();        
         }
         else
         {
-            ses.enabled = true;
-
-        }
-       
+            audioSource.Play();
+        }    
     }
-
 
     public void gold1_satinal_btn()
     {
