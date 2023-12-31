@@ -28,7 +28,7 @@ oyuncuların Skorlarına göre sıralanıp efektif bir şekilde tasarlanacaktır
 Aşağıda Oyunun akış diyagramı yer almaktadır.
 
 - Şekilde Oyunun akış diyagramı vardır
-![diagram](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/diagram.png)
+![diagram](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/diagram.png)
 
 # Logın-Create Sahnesi
 Bu sahnede LOGIN ve CREATE adında iki ayrı panel oluşturdum . Burada oyuncuların gerekli
@@ -38,10 +38,10 @@ Oyuncu Giriş panelinide kullanıcı adını veya şifresini yanlış girdiği d
 kullanıcı adı şifre ve şifre tekrar durumlarını kontrol edip düzeli girildiğinde bile sorgu yapıp aynı
 isimde kullanıcı adı olup olmadığını kontrol ettikten sonra aynı kullanıcı yoksa kaydediyr.
 - Login paneli
-![login](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/login.png)
+![login](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/login.png)
 
  - Create paneli
-![create](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/create.png)
+![create](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/create.png)
 
 # Market paneli
 Oyunda kullanıcıların oyunu oynarken farklı karekterler ile oyuna devam etmelerini sağlamak
@@ -52,7 +52,7 @@ oluşturdum.
 Aşaıdaki görsellerde Market paneli Convert Paneli yer alıyor .
 
 - Market paneli
-![market](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/menu.png)
+![market](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/menu.png)
 
 # Bölüm1-Bölüm2 Sahneleri
 Oyununda 2 farklı bölüm yaptım Orman ve kış tema konulu olarak . adındanda anlaşıldığı üzere
@@ -61,9 +61,9 @@ orman sahnesi yani 1. Bölümde sahne tasarımı yol planı yeşillik orman tarz
 Aynı şekilde 2. Bölümde de Kar efekti ve sahne uygun efekt ve nesneler kullandım .
  
 - Bölüm 1 sahnesi:
-![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/bolum1.png)
+![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/bolum1.png)
 - Bölüm 2 sahnesi:
-![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/bolum2.png)
+![bolum](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/bolum2.png)
 
 # Oyun Web Sayfası
 Bu kısımda oyun web sayfası hakkında bilgi verecem . Oyunun kullanıcılar için kayıtlar ve skorlar
@@ -74,4 +74,4 @@ kullanıcı arama , listeleme işlemlerini yaptım.
 Web sayfası arayüzünde css ‘i efektif olarak kullandım . dil olarakta html ve php kullandım .
 Veritabanı olarak da phpMysql veritabanını kullandım.
 - Şekilde  oyunun web sayfası bulunuyor
-![web](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/images/Web.png)
+![web](https://github.com/HasanEren72/The_Path_Of_Death_-Oyun_projesi/blob/main/Sprites/Web.png)
