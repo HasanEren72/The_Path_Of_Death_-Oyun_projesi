@@ -1,6 +1,6 @@
 # The Path Of Death
 
-[google drive link :](https://drive.google.com/drive/folders/1BdJABdXxC4m6eToXntPDNrySDSwgRNz9?usp=sharing)
+[google drive link of all files :](https://drive.google.com/drive/folders/1BdJABdXxC4m6eToXntPDNrySDSwgRNz9?usp=sharing)
 
 # Unity 3D oyun Projesi
 
