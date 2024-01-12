@@ -8,8 +8,7 @@ public class Game_canvas_script : MonoBehaviour
 {   
     private AudioSource audioSource;
 
-    [SerializeField]
-    private AudioClip OyunBaslangicSesi;
+    [SerializeField] private AudioClip OyunBaslangicSesi;
 
     private AudioSource[] tumSesler;
 

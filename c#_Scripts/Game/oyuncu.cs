@@ -8,24 +8,12 @@ using System.Data;
 
 public class oyuncu : MonoBehaviour
 {
-    [SerializeField]
-    private Transform oyuncu_kayma;
-
-    [SerializeField]
-    private Animator animasyon;
-
-    [SerializeField]
-    private GameObject altin_efekti , hiz_efekti , elmas_efekti , kalkan_efekti , devamlı_kalkan_efekti; 
-
-    [SerializeField]
-    private Transform Yol_1, Yol_2;
-
-    [SerializeField]
-    private Transform oyuncu_T_efekt_icin;
-
-    [SerializeField]
-    private Rigidbody rigi;
-
+    [SerializeField] private Transform oyuncu_kayma;
+    [SerializeField] private Animator animasyon;
+    [SerializeField] private GameObject altin_efekti , hiz_efekti , elmas_efekti , kalkan_efekti , devamlı_kalkan_efekti; 
+    [SerializeField] private Transform Yol_1, Yol_2;
+    [SerializeField] private Transform oyuncu_T_efekt_icin;
+    [SerializeField] private Rigidbody rigi;
     public bool sag = true;
     public bool miknatis_alindi = false;
     public bool hiz_nesnesi_alindi = false;
@@ -33,14 +21,9 @@ public class oyuncu : MonoBehaviour
 
     private AudioSource audioSource;
 
-    [SerializeField]
-    private AudioClip miknatisSesi, AltinTemasSesi, kalkanSesi, ElmasSesi;
-
-    [SerializeField]
-    private TMPro.TextMeshProUGUI puan_txt , altin_txt , elmas_txt;  //textmeshpro değerleri
-
-    [SerializeField]
-    private float hiz = 9.0f;
+    [SerializeField] private AudioClip miknatisSesi, AltinTemasSesi, kalkanSesi, ElmasSesi;
+    [SerializeField] private TMPro.TextMeshProUGUI puan_txt , altin_txt , elmas_txt;  //textmeshpro değerleri
+    [SerializeField] private float hiz = 9.0f;
 
     public static int puan = 0;      // skor artış degerleri
     public static int altin = 0;

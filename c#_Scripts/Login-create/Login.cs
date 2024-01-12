@@ -10,9 +10,8 @@ public class Login : MonoBehaviour
 {    
     private AudioSource ses;
 
-    [SerializeField]
-    private TMP_InputField kullaniciAdi_IF, sifre_IF;
-
+    [SerializeField] private TMP_InputField kullaniciAdi_IF, sifre_IF;
+    [SerializeField] private GameObject hataPaneli;
     public static string kuladi;
     public static string sifre;
 
@@ -20,9 +19,6 @@ public class Login : MonoBehaviour
     public static string V_sifre_degeri;
 
     panel_gecis pK_Script;
-
-    [SerializeField]
-    private GameObject hataPaneli;
 
     void Start()
     {
@@ -42,13 +38,13 @@ public class Login : MonoBehaviour
     {
         if (kullaniciAdi_IF.text.Equals("") || sifre_IF.text.Equals(""))
         {
-            StartCoroutine(pK_Script.hataPanel("Boþ BIRAKMAYINIZ!"));
+            StartCoroutine(pK_Script.hataPanel("Boï¿½ BIRAKMAYINIZ!"));
             hataPaneliGetir();
         }
         else
         {          
             StartCoroutine((pK_Script.hataPanel("Giris Basarili")));
-            //veritabaný
+            //veritabanï¿½
             StartCoroutine(girisYap());
         }
     }
@@ -72,16 +68,16 @@ public class Login : MonoBehaviour
             {
                Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);              
                
-                if (www.downloadHandler.text.Contains("giriþ baþarýlý"))
+                if (www.downloadHandler.text.Contains("giriï¿½ baï¿½arï¿½lï¿½"))
                 {
                     kuladi_vesifre_atama_fonk();
-                    PlayerPrefs.SetString("kullaniciadi_Kayit", kuladi); // set etme iþlemi
+                    PlayerPrefs.SetString("kullaniciadi_Kayit", kuladi); // set etme iï¿½lemi
                     PlayerPrefs.SetString("sifre_Kayit", sifre);
 
                     V_kullanici_degeri = PlayerPrefs.GetString("kullaniciadi_Kayit");
                     V_sifre_degeri = PlayerPrefs.GetString("sifre_Kayit");
 
-                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);  //  için sahneyi yükledik                  
+                    SceneManager.LoadScene("Menu", LoadSceneMode.Single);  //  iï¿½in sahneyi yï¿½kledik                  
                 }
                 else
                 {

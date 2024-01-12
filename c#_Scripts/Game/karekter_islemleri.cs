@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class karekter_islemleri : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject oyuncu1, oyuncu2, oyuncu3;
-
-    [SerializeField]
-    private bool karekter1, karekter2, karekter3;
+    [SerializeField] private GameObject oyuncu1, oyuncu2, oyuncu3;
+    [SerializeField] private bool karekter1, karekter2, karekter3;
 
     void Start()
     {

@@ -9,8 +9,7 @@ public class Game_over : MonoBehaviour
 
     AudioSource audioSource;
 
-    [SerializeField]
-    private AudioClip gameOverSesi;
+    [SerializeField] private AudioClip gameOverSesi;
 
     private void Awake()
     {
@@ -19,7 +18,7 @@ public class Game_over : MonoBehaviour
 
     private void Start()
     {
-        audioSource.PlayOneShot(gameOverSesi); //1 kez gameOverSesi çalacak
+        audioSource.PlayOneShot(gameOverSesi); //1 kez gameOverSesi ï¿½alacak
         audioSource.Play();   //Sahne Sesi Calar 
     }
 

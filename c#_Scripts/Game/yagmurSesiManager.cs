@@ -5,8 +5,7 @@ using UnityEngine;
 public class yagmurSesiManager : MonoBehaviour
 {
     private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip YagmurSesi;
+    [SerializeField] private AudioClip YagmurSesi;
 
     private void Awake()
     {

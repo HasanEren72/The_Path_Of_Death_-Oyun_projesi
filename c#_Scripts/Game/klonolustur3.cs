@@ -16,8 +16,6 @@ public class klonolustur3 : MonoBehaviour
 
     public Transform oyuncuT;
 
-
-
     float silme_zamani = 5.0f;
 
     float sag_x_kardinat = 1.07f;
@@ -26,11 +24,10 @@ public class klonolustur3 : MonoBehaviour
     [SerializeField] private GameObject[] nesneX;
     private BoxCollider[] collider;
 
-
     void Start()
     {
         
-        InvokeRepeating("nesne_klonla_fonk", 0, 0.5f); //5 saniye aralýklarla tekrar tekrar nesne klonla fonksiyonunu çaðýrýr
+        InvokeRepeating("nesne_klonla_fonk", 0, 0.5f); //5 saniye aralï¿½klarla tekrar tekrar nesne klonla fonksiyonunu ï¿½aï¿½ï¿½rï¿½r
 
 
         collider = new BoxCollider[nesneX.Length];
@@ -116,7 +113,7 @@ public class klonolustur3 : MonoBehaviour
     void klonla(GameObject nesne, float y_kordinat)
     {
 
-        GameObject yeni_klon = Instantiate(nesne); // bu nesne yi yeni klon nesnesine yükledik
+        GameObject yeni_klon = Instantiate(nesne); // bu nesne yi yeni klon nesnesine yï¿½kledik
 
 
         int rastsayi = Random.Range(0, 100);
@@ -129,7 +126,7 @@ public class klonolustur3 : MonoBehaviour
             {
                 yeni_klon.GetComponent<BoxCollider>().enabled = false;
 
-                for (int i = 0; i < collider.Length; i++)  //bursaý çalýþmýyor
+                for (int i = 0; i < collider.Length; i++)  //bursaï¿½ ï¿½alï¿½ï¿½mï¿½yor
                 {
                     collider[i].GetComponent<BoxCollider>().enabled = false;
                     Debug.Log("deger dondu" + oyuncu3.boxcolider_aktiflik);

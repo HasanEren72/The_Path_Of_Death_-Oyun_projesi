@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 public class panel_gecis : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject Giris_panel , kayit_panel;
-    [SerializeField]
-    private TextMeshProUGUI  hata_TMP;
+    [SerializeField] private GameObject Giris_panel , kayit_panel;
+    [SerializeField] private TextMeshProUGUI  hata_TMP;
 
     public void Kayitol_B()
     {
@@ -21,7 +19,7 @@ public class panel_gecis : MonoBehaviour
         kayit_panel.SetActive(false);
         Giris_panel.SetActive(true);    
     }
-    public void EXÝT_B()
+    public void EXï¿½T_B()
     {
         Application.Quit();
     }

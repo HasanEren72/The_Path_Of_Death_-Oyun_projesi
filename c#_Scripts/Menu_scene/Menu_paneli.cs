@@ -8,40 +8,24 @@ using UnityEngine.SceneManagement;
 
 public class Menu_paneli : MonoBehaviour
 {
-    [SerializeField]
-    private  AudioSource audioSource;
-
-    [SerializeField]
-    private AudioClip satýnAlma_sesi;
-
-    [SerializeField]
-    private TextMeshProUGUI puan, toplam_altin ,elmas  ,satinalmamesaj1, satinalmamesaj2, satinalmamesaj3 ,altin1_Mesaj, altin2_Mesaj,elmas_mesaj;
-
-    [SerializeField]
-    private TextMeshProUGUI kullaniciadi_txt_hosgeldin;
-
-    [SerializeField]
-    private TextMeshProUGUI market_btn ,Cevirme_btn;
-
-    [SerializeField]
-    private GameObject marketpaneli,Conver_Paneli;
-
-    [SerializeField]
-    private GameObject kareker1_satinAlmaPaneli, kareker2_satinAlmaPaneli, kareker3_satinAlmaPaneli;
-
-    [SerializeField]
-    private GameObject altin1_satinalmapaneli, altin2_satinalmapaneli, elmas_satinalmapaneli;
+    [SerializeField] private  AudioSource audioSource;
+    [SerializeField] private AudioClip satï¿½nAlma_sesi;
+    [SerializeField] private TextMeshProUGUI puan, toplam_altin ,elmas  ,satinalmamesaj1, satinalmamesaj2, satinalmamesaj3 ,altin1_Mesaj, altin2_Mesaj,elmas_mesaj;
+    [SerializeField] private TextMeshProUGUI kullaniciadi_txt_hosgeldin;
+    [SerializeField] private TextMeshProUGUI market_btn ,Cevirme_btn;
+    [SerializeField] private GameObject marketpaneli,Conver_Paneli;
+    [SerializeField] private GameObject kareker1_satinAlmaPaneli, kareker2_satinAlmaPaneli, kareker3_satinAlmaPaneli;
+    [SerializeField] private GameObject altin1_satinalmapaneli, altin2_satinalmapaneli, elmas_satinalmapaneli;
 
     public GameObject kullan_btn1 , kullan_btn2, kullan_btn3;
   
-    [SerializeField]
-    private string kuladi, sifre;
+    [SerializeField] private string kuladi, sifre;
 
     public int  toplamAltin,toplamElmas;
     
     public static bool karekter1_buy , karekter2_buy, karekter3_buy;
 
-    // string karekter1_satinalindi, karekter2_satinalindi, karekter3_satinalindi; // kullan btn aktiflik için
+    // string karekter1_satinalindi, karekter2_satinalindi, karekter3_satinalindi; // kullan btn aktiflik iï¿½in
     string karekter_1satnalindik, karekter_2satnalindik, karekter_3satnalindik;
 
     private void Awake()
@@ -85,7 +69,7 @@ public class Menu_paneli : MonoBehaviour
         kuladi = Login.V_kullanici_degeri;
         sifre = Login.V_sifre_degeri;
 
-        PlayerPrefs.DeleteKey("altin_sayisi_verisi"); // deðerleri siler 
+        PlayerPrefs.DeleteKey("altin_sayisi_verisi"); // deï¿½erleri siler 
         PlayerPrefs.DeleteKey("puan_verisi");
         PlayerPrefs.DeleteKey("elmas_verisi");
        
@@ -94,7 +78,7 @@ public class Menu_paneli : MonoBehaviour
         Debug.Log(sifre);
         kullaniciadi_txt_hosgeldin.text = kuladi;
 
-        //skor iþlemleri skor çekme iþlemi
+        //skor iï¿½lemleri skor ï¿½ekme iï¿½lemi
         StartCoroutine(puan_cekme());
         StartCoroutine(toplam_altin_cekme());
         StartCoroutine(toplam_elmas_cekme());
@@ -103,20 +87,20 @@ public class Menu_paneli : MonoBehaviour
 
     public void karekter1_satin_AL()
     {
-        kareker1_satinAlmaPaneli.SetActive(true); // karekter1 satýnalma paneli açar
+        kareker1_satinAlmaPaneli.SetActive(true); // karekter1 satï¿½nalma paneli aï¿½ar
         kareker2_satinAlmaPaneli.SetActive(false);
         kareker3_satinAlmaPaneli.SetActive(false);
     }
     
     public void karekter2_satin_AL()
     {
-        kareker2_satinAlmaPaneli.SetActive(true);// karekter2 satýnalma paneli açar
+        kareker2_satinAlmaPaneli.SetActive(true);// karekter2 satï¿½nalma paneli aï¿½ar
         kareker1_satinAlmaPaneli.SetActive(false);
         kareker3_satinAlmaPaneli.SetActive(false);
     }
     public void karekter3_satin_AL()
     {
-        kareker3_satinAlmaPaneli.SetActive(true); // karekter3 satýnalma paneli açar
+        kareker3_satinAlmaPaneli.SetActive(true); // karekter3 satï¿½nalma paneli aï¿½ar
         kareker2_satinAlmaPaneli.SetActive(false);
         kareker1_satinAlmaPaneli.SetActive(false);
     }
@@ -127,14 +111,14 @@ public class Menu_paneli : MonoBehaviour
         karekter_1satnalindik = "aktif1";
         PlayerPrefs.SetString("karekter1_kullanbtn", karekter_1satnalindik);    
     }
-    public void Kullan_btn() //butona basýnca karekter seçer
+    public void Kullan_btn() //butona basï¿½nca karekter seï¿½er
     {
         karekter1_buy = true;
 
         karekter2_buy = false;
         karekter3_buy = false;
 
-        satinalmamesaj1.text = "*** Karekter seçildi ***";
+        satinalmamesaj1.text = "*** Karekter seï¿½ildi ***";
     }
     public void karekter2_Kullanbtn_Aktiflik()//kullan2btn aktif eder
     {
@@ -143,13 +127,13 @@ public class Menu_paneli : MonoBehaviour
         karekter_2satnalindik = "aktif2";
         PlayerPrefs.SetString("karekter2_kullanbtn", karekter_2satnalindik);      
     }
-    public void Kullan_btn2()//butona basýnca karekter seçer
+    public void Kullan_btn2()//butona basï¿½nca karekter seï¿½er
     {
         karekter2_buy = true;
 
         karekter1_buy = false;  
         karekter3_buy = false;
-        satinalmamesaj2.text = "*** Karekter seçildi ***";
+        satinalmamesaj2.text = "*** Karekter seï¿½ildi ***";
     }
     public void karekter3_Kullanbtn_Aktiflik()//kullan3btn aktif eder
     {
@@ -157,13 +141,13 @@ public class Menu_paneli : MonoBehaviour
         karekter_3satnalindik = "aktif3";
         PlayerPrefs.SetString("karekter3_kullanbtn", karekter_3satnalindik);    
     }
-    public void Kullan_btn3() //butona basýnca karekter seçer
+    public void Kullan_btn3() //butona basï¿½nca karekter seï¿½er
     {
         karekter3_buy = true;
 
         karekter1_buy = false;
         karekter2_buy = false;
-        satinalmamesaj3.text = "*** Karekter seçildi ***";
+        satinalmamesaj3.text = "*** Karekter seï¿½ildi ***";
     }
     public void hayir_btn()
     {
@@ -188,17 +172,17 @@ public class Menu_paneli : MonoBehaviour
         {
             StartCoroutine(AltinGuncelleme_ekleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
             karekter1_Kullanbtn_Aktiflik();
 
-            satinalmamesaj1.text = "Arissa Karekteri Satýn Alýndý .";
+            satinalmamesaj1.text = "Arissa Karekteri Satï¿½n Alï¿½ndï¿½ .";
             Debug.Log("*** Karekter1 satin alindi ***");
         }
         else
         {
-            satinalmamesaj1.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
-            Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
+            satinalmamesaj1.text = "karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!";
+            Debug.Log(" karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!");
         }
         // karekter2_buy = false;
     }
@@ -208,17 +192,17 @@ public class Menu_paneli : MonoBehaviour
         {
             StartCoroutine(ElmasGuncelleme_ekleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
             karekter2_Kullanbtn_Aktiflik();
 
-            satinalmamesaj2.text = "Mutant Karekteri Satýn Alýndý .";
+            satinalmamesaj2.text = "Mutant Karekteri Satï¿½n Alï¿½ndï¿½ .";
             Debug.Log("*** Karekter2 satin alindi ***");
         }
         else
         {
-            satinalmamesaj2.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
-            Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
+            satinalmamesaj2.text = "karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!";
+            Debug.Log(" karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!");
         }
     }
 
@@ -228,17 +212,17 @@ public class Menu_paneli : MonoBehaviour
         {
             StartCoroutine(AltinGuncelleme_ekleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
             karekter3_Kullanbtn_Aktiflik();
 
-            satinalmamesaj3.text = "Zombie Karekteri Satýn Alýndý .";
+            satinalmamesaj3.text = "Zombie Karekteri Satï¿½n Alï¿½ndï¿½ .";
             Debug.Log("*** Karekter3 satin alindi ***");
         }
         else
         {
-            satinalmamesaj3.text = "karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!";
-            Debug.Log(" karekter satýn alma baþarýsýz ! altýnýnýz yetersiz!");
+            satinalmamesaj3.text = "karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!";
+            Debug.Log(" karekter satï¿½n alma baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!");
         }
     }
 
@@ -248,15 +232,15 @@ public class Menu_paneli : MonoBehaviour
         {
            StartCoroutine(donusturme1_altin_elmas_guncelleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
-            altin1_Mesaj.text = "Dönüþtürme baþarýlý ";
-            Debug.Log("*** Dönüþtürme1 baþarýlý ***");
+            altin1_Mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½lï¿½ ";
+            Debug.Log("*** Dï¿½nï¿½ï¿½tï¿½rme1 baï¿½arï¿½lï¿½ ***");
         }
         else
         {
-            altin1_Mesaj.text = "Dönüþtürme baþarýsýz ! elmasýnýz yetersiz!";
-            Debug.Log(" Dönüþtürme1 baþarýsýz ! elmasýnýz yetersiz!");
+            altin1_Mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½sï¿½z ! elmasï¿½nï¿½z yetersiz!";
+            Debug.Log(" Dï¿½nï¿½ï¿½tï¿½rme1 baï¿½arï¿½sï¿½z ! elmasï¿½nï¿½z yetersiz!");
         }
     }
     public void altina_cevir2_evet_btn()
@@ -265,15 +249,15 @@ public class Menu_paneli : MonoBehaviour
         {
             StartCoroutine(donusturme2_altin_elmas_guncelleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
-            altin2_Mesaj.text = "Dönüþtürme baþarýlý ";
-            Debug.Log("*** Dönüþtürme2 baþarýlý ***");
+            altin2_Mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½lï¿½ ";
+            Debug.Log("*** Dï¿½nï¿½ï¿½tï¿½rme2 baï¿½arï¿½lï¿½ ***");
         }
         else
         {
-            altin2_Mesaj.text = "Dönüþtürme baþarýsýz ! elmasýnýz yetersiz!";
-            Debug.Log(" Dönüþtürme2 baþarýsýz ! elmasýnýz yetersiz!");
+            altin2_Mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½sï¿½z ! elmasï¿½nï¿½z yetersiz!";
+            Debug.Log(" Dï¿½nï¿½ï¿½tï¿½rme2 baï¿½arï¿½sï¿½z ! elmasï¿½nï¿½z yetersiz!");
         }
     }
     public void elmasa_cevir1_evet_btn()
@@ -282,15 +266,15 @@ public class Menu_paneli : MonoBehaviour
         {
             StartCoroutine(Donusturme3_altin_elmas_guncelleme());
 
-            audioSource.PlayOneShot(satýnAlma_sesi);
+            audioSource.PlayOneShot(satï¿½nAlma_sesi);
 
-            elmas_mesaj.text = "Dönüþtürme baþarýlý ";
-            Debug.Log("*** Dönüþtürme3 baþarýlý ***");
+            elmas_mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½lï¿½ ";
+            Debug.Log("*** Dï¿½nï¿½ï¿½tï¿½rme3 baï¿½arï¿½lï¿½ ***");
         }
         else
         {
-            elmas_mesaj.text = "Dönüþtürme baþarýsýz ! altinýnýz yetersiz!";
-            Debug.Log(" Dönüþtürme3 baþarýsýz ! altýnýnýz yetersiz!");
+            elmas_mesaj.text = "Dï¿½nï¿½ï¿½tï¿½rme baï¿½arï¿½sï¿½z ! altinï¿½nï¿½z yetersiz!";
+            Debug.Log(" Dï¿½nï¿½ï¿½tï¿½rme3 baï¿½arï¿½sï¿½z ! altï¿½nï¿½nï¿½z yetersiz!");
         }
     }
 
@@ -417,7 +401,7 @@ public class Menu_paneli : MonoBehaviour
             {
                // Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);
                 string a = www.downloadHandler.text;
-                if (a!= "baþarýsýz")
+                if (a!= "baï¿½arï¿½sï¿½z")
                 {
                     puan.text = a.ToString();
                 }                           
@@ -444,10 +428,10 @@ public class Menu_paneli : MonoBehaviour
             {
                // Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);
                 string  b = www.downloadHandler.text;
-                if (b!= "baþarýsýz")
+                if (b!= "baï¿½arï¿½sï¿½z")
                 {
                     toplam_altin.text = b.ToString();
-                    toplamAltin = Convert.ToInt32(b); // toplanan altin deðeri  satýn alma panelinde kullanmak için
+                    toplamAltin = Convert.ToInt32(b); // toplanan altin deï¿½eri  satï¿½n alma panelinde kullanmak iï¿½in
 
                 }                
             }
@@ -473,7 +457,7 @@ public class Menu_paneli : MonoBehaviour
             {
                // Debug.Log("Sorgu Sonucu:" + www.downloadHandler.text);
                 string c = www.downloadHandler.text;
-                if (c!= "baþarýsýz")
+                if (c!= "baï¿½arï¿½sï¿½z")
                 {
                     elmas.text = c.ToString();
 
@@ -483,7 +467,7 @@ public class Menu_paneli : MonoBehaviour
         }
     }
 
-    IEnumerator AltinGuncelleme_ekleme() // Karekter satýn alýndýktan sonra top altýn günceller
+    IEnumerator AltinGuncelleme_ekleme() // Karekter satï¿½n alï¿½ndï¿½ktan sonra top altï¿½n gï¿½nceller
     {
         WWWForm form = new WWWForm();
         form.AddField("unity", "AltinGuncelleme_ekleme");
@@ -507,7 +491,7 @@ public class Menu_paneli : MonoBehaviour
         }
     }
 
-    IEnumerator ElmasGuncelleme_ekleme() // Karekter satýn alýndýktan sonra top elmas günceller
+    IEnumerator ElmasGuncelleme_ekleme() // Karekter satï¿½n alï¿½ndï¿½ktan sonra top elmas gï¿½nceller
     {
         WWWForm form = new WWWForm();
         form.AddField("unity", "ElmasGuncelleme_ekleme");

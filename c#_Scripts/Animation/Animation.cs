@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Animation : MonoBehaviour
 {
-    [SerializeField] 
-    private GameObject Karakter;  // [Serializefield]  kullanmanýn nedeni private eriþilemez deðiþkeni inspector panelinde kullanablmektir
+    [SerializeField] private GameObject Karakter;  // [Serializefield]  kullanmanï¿½n nedeni private eriï¿½ilemez deï¿½iï¿½keni inspector panelinde kullanablmektir
 
     Animator karakterAnimator;
 
@@ -24,7 +23,7 @@ public class Animation : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            karakterAnimator.SetTrigger("ZÝPLA");
+            karakterAnimator.SetTrigger("Zï¿½PLA");
         }
     }
     void Kayma()

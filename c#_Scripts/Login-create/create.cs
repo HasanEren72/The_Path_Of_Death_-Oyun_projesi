@@ -8,14 +8,9 @@ using DG.Tweening;
 
 public class create : MonoBehaviour
 {
-    [SerializeField]
-    private TMP_InputField kullaniciAdi_IF, sifre_IF, sifreTekrar_IF;
-
-    [SerializeField]
-    private Toggle sozlesme;
-
-    [SerializeField]
-    private GameObject hataPaneli;
+    [SerializeField] private TMP_InputField kullaniciAdi_IF, sifre_IF, sifreTekrar_IF;
+    [SerializeField] private Toggle sozlesme;
+    [SerializeField] private GameObject hataPaneli;
 
     panel_gecis pK_Script;
 
@@ -31,7 +26,7 @@ public class create : MonoBehaviour
     {
         if (kullaniciAdi_IF.text.Equals("") || sifre_IF.text.Equals("") || sifreTekrar_IF.text.Equals(""))
         {
-            StartCoroutine(pK_Script.hataPanel("Boþ BIRAKMAYINIZ!"));
+            StartCoroutine(pK_Script.hataPanel("Boï¿½ BIRAKMAYINIZ!"));
             hataPaneliGetir();
         }
         else
@@ -40,18 +35,18 @@ public class create : MonoBehaviour
             {
                 if (sozlesme.isOn)
                 {                  
-                    Debug.Log("Veritabaný Baðlantýsý");
+                    Debug.Log("Veritabanï¿½ Baï¿½lantï¿½sï¿½");
                     StartCoroutine(kayitOl());
                 }
                 else
                 {
-                    StartCoroutine(pK_Script.hataPanel("Lütfen Sözleþmeyi Kabul Ediniz!"));
+                    StartCoroutine(pK_Script.hataPanel("Lï¿½tfen Sï¿½zleï¿½meyi Kabul Ediniz!"));
                     hataPaneliGetir();
                 }
             }
             else
             {
-                StartCoroutine(pK_Script.hataPanel("Þifreler Eþleþmiyor!"));
+                StartCoroutine(pK_Script.hataPanel("ï¿½ifreler Eï¿½leï¿½miyor!"));
                 hataPaneliGetir();
             }
         }
@@ -60,7 +55,7 @@ public class create : MonoBehaviour
     IEnumerator kayitOl()
     {
         WWWForm form = new WWWForm();
-        form.AddField("unity","kayitOlma"); //php dosyasýnda kayitOlma if bloðuna gider
+        form.AddField("unity","kayitOlma"); //php dosyasï¿½nda kayitOlma if bloï¿½una gider
 
         form.AddField("kullaniciAdi", kullaniciAdi_IF.text); 
         form.AddField("sifre", sifre_IF.text);
@@ -75,20 +70,20 @@ public class create : MonoBehaviour
             }
             else
             {               
-                if (www.downloadHandler.text.Contains("kayýt baþarýlý"))
+                if (www.downloadHandler.text.Contains("kayï¿½t baï¿½arï¿½lï¿½"))
                 {
-                    StartCoroutine(pK_Script.hataPanel(www.downloadHandler.text));  //kayýt baþarýlý olma durumunda sorgu sonucunu hata paneline yazar
+                    StartCoroutine(pK_Script.hataPanel(www.downloadHandler.text));  //kayï¿½t baï¿½arï¿½lï¿½ olma durumunda sorgu sonucunu hata paneline yazar
 
                     PlayerPrefs.DeleteAll();
                     kayitoldu = true;
                
-                    StartCoroutine(pK_Script.hataPanel("Kayýt Baþarýlý þimdide Giriþ yapýn."));
+                    StartCoroutine(pK_Script.hataPanel("Kayï¿½t Baï¿½arï¿½lï¿½ ï¿½imdide Giriï¿½ yapï¿½n."));
                     hataPaneliGetir();
                 }
                 else
                 {
                   //hata olma durumunda//
-                    StartCoroutine(pK_Script.hataPanel("Lütfen benzersiz kullanýcý adý kullanýnýz!"));
+                    StartCoroutine(pK_Script.hataPanel("Lï¿½tfen benzersiz kullanï¿½cï¿½ adï¿½ kullanï¿½nï¿½z!"));
                     hataPaneliGetir();
                 }               
             }
